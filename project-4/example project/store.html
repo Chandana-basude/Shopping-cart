@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping cart</title>
+<style>
+    /* CSS Styles */
+    html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        background-color: rgb(253, 253, 253);
+        font-family: Arial, sans-serif;
+    }
+
+    .content-section {
+        margin: 1em;
+    }
+    
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1.5em;
+    }
+
+    .btn {
+        text-align: center;
+        vertical-align: middle;
+        padding: .67em .67em;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        color: white;
+        background-color: #56CCF2;
+        border: none;
+        border-radius: .3em;
+        font-weight: bold;
+    }
+
+    .btn-primary:hover {
+        background-color: #2D9CDB;
+    }
+
+    .shop-item-title {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .shop-item-details {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+    }
+
+    .shop-item-price {
+        flex-grow: 1;
+        color: #333;
+    }
+
+    .shop-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .cart-header {
+        font-weight: bold;
+        font-size: 1.25em;
+        color: #333;
+    }
+
+    .cart-column {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid black;
+        margin-right: 1.5em;
+        padding-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .cart-row {
+        display: flex;
+    }
+
+    .cart-item {
+        width: 45%;
+    }
+
+    .cart-price {
+        width: 20%;
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    .cart-quantity {
+        width: 35%;
+    }
+
+    .cart-item-image {
+        width: 75px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .btn-danger {
+        color: white;
+        background-color: #EB5757;
+        border: none;
+        border-radius: .3em;
+        font-weight: bold;
+    }
+
+    .cart-quantity-input {
+        height: 34px;
+        width: 50px;
+        border-radius: 5px;
+        border: 1px solid #56CCF2;
+        background-color: #eee;
+        color: #333;
+        padding: 0;
+        text-align: center;
+        font-size: 1.2em;
+        margin-right: 25px;
+    }
+
+    .cart-total {
+        text-align: end;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .cart-total-title {
+        font-weight: bold;
+        font-size: 1.5em;
+        color: black;
+        margin-right: 20px;
+    }
+
+    .cart-total-price {
+        color: #333;
+        font-size: 1.1em;
+    }
+
+    .btn-purchase {
+        display: block;
+        margin: 40px auto 80px auto;
+        font-size: 1.75em;
+    }
+
+    .logout-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        z-index: 1000; /* Ensure it's above other content */
+    }
+
+    .logout-button:hover {
+        background-color: #c82333;
+    }
+</style>
+</head>
+<body>
+    <a href="sl.html" class="logout-button" id="logout-button">Logout</a>
+    <section class="container content-section">
+        <h2 class="section-header" align="center">Shopping Cart</h2>
+        <div class="shop-items">
+            <div class="shop-item">
+                <span class="shop-item-title">Puma Shoes</span>
+                <img class="shop-item-image" src="puma shoes.jpeg" width=250 height=150>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">₹ 2500</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="shop-item">
+                <span class="shop-item-title">Pattu Saree</span>
+                <img class="shop-item-image" src="pattu sari.jpeg" width=250 height=150>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">₹ 2000</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="shop-item">
+                <span class="shop-item-title">Makeup Products</span>
+                <img class="shop-item-image" src="makeup.jpeg" width=250 height=150>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">₹ 2220</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="shop-item">
+                <span class="shop-item-title">Kurthi</span>
+                <img class="shop-item-image" src="kurthi.jpg" width=250 height=150>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">₹ 1500</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="shop-item">
+                <span class="shop-item-title">Laptops</span>
+                <img class="shop-item-image" src="laptop.webp" width=300 height=150>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">₹ 80000</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="shop-item">
+                <span class="shop-item-title">Iphone</span>
+                <img class="shop-item-image" src="Iphone.jpg" width=250 height=150>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">₹ 100000</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container content-section">
+        <h2 class="section-header" align="center">CART</h2>
+        <div class="cart-row">
+            <span class="cart-item cart-header cart-column">ITEM</span>
+            <span class="cart-price cart-header cart-column">PRICE</span>
+            <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-total">
+            <strong class="cart-total-title">Total</strong>
+            <span class="cart-total-price">₹ 0</span>
+        </div>
+        <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+    </section>
+<script>
+    // JavaScript for functionality
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Function to handle when the "ADD TO CART" button is clicked
+        function addToCartClicked(event) {
+            var button = event.target;
+            var shopItem = button.parentElement.parentElement;
+            var title = shopItem.querySelector('.shop-item-title').innerText;
+            var price = shopItem.querySelector('.shop-item-price').innerText;
+            var imageSrc = shopItem.querySelector('.shop-item-image').src;
+            addItemToCart(title, price, imageSrc);
+            updateCartTotal();
+        }
+
+        // Function to add item to cart
+        function addItemToCart(title, price, imageSrc) {
+            var cartRow = document.createElement('div');
+            cartRow.classList.add('cart-row');
+            var cartItems = document.querySelector('.cart-items');
+            var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
+            for (var i = 0; i < cartItemNames.length; i++) {
+                if (cartItemNames[i].innerText === title) {
+                    alert('This item is already added to the cart');
+                    return;
+                }
+            }
+            var cartRowContents = `
+                <div class="cart-item cart-column">
+                    <                <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
+                    <span class="cart-item-title">${title}</span>
+                </div>
+                <span class="cart-price cart-column">${price}</span>
+                <div class="cart-quantity cart-column">
+                    <input class="cart-quantity-input" type="number" value="1">
+                    <button class="btn btn-danger" type="button">REMOVE</button>
+                </div>`;
+            cartRow.innerHTML = cartRowContents;
+            cartItems.append(cartRow);
+            cartRow.querySelector('.btn-danger').addEventListener('click', removeCartItem);
+            cartRow.querySelector('.cart-quantity-input').addEventListener('change', quantityChanged);
+        }
+
+        // Function to remove item from cart
+        function removeCartItem(event) {
+            var buttonClicked = event.target;
+            buttonClicked.parentElement.parentElement.remove();
+            updateCartTotal();
+        }
+
+        // Function to handle quantity changes in cart
+        function quantityChanged(event) {
+            var input = event.target;
+            if (isNaN(input.value) || input.value <= 0) {
+                input.value = 1;
+            }
+            updateCartTotal();
+        }
+
+        // Function to update cart total price
+        function updateCartTotal() {
+            var cartItemContainer = document.querySelector('.cart-items');
+            var cartRows = cartItemContainer.querySelectorAll('.cart-row');
+            var total = 0;
+            cartRows.forEach(function(cartRow) {
+                var priceElement = cartRow.querySelector('.cart-price');
+                var quantityElement = cartRow.querySelector('.cart-quantity-input');
+                var price = parseFloat(priceElement.innerText.replace('₹', ''));
+                var quantity = quantityElement.value;
+                total += price * quantity;
+            });
+            document.querySelector('.cart-total-price').innerText = '₹ ' + total.toFixed(2);
+        }
+
+        // Add event listeners for "ADD TO CART" buttons
+        var addToCartButtons = document.querySelectorAll('.shop-item-button');
+        addToCartButtons.forEach(function(button) {
+            button.addEventListener('click', addToCartClicked);
+        });
+
+        // Add event listener for "PURCHASE" button
+        document.querySelector('.btn-purchase').addEventListener('click', purchaseClicked);
+
+        // Function to handle purchase action
+        function purchaseClicked() {
+            alert('Thank you for your purchase');
+            var cartItems = document.querySelector('.cart-items');
+            while (cartItems.hasChildNodes()) {
+                cartItems.removeChild(cartItems.firstChild);
+            }
+            updateCartTotal();
+        }
+
+    });
+</script>
+</body>
+</html>
